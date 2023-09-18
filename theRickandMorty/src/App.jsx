@@ -1,9 +1,14 @@
 import './App.css';
-import Card from './components/Card/Card'
+import About from './components/About/About';
 import Cards from './components/Cards/Cards'
+import Detail from './components/Detail/Detail';
+import Error from './components/Error/Error';
 import NavBar from './components/Nav/NavBar';
 
+
+
 import { useState } from 'react'
+import { Routes, Route, useLocation} from 'react-router-dom'
 
 import axios from 'axios'
 
@@ -21,7 +26,8 @@ import axios from 'axios'
 // };
 
 function App() {
-   
+
+   const {pathname} = useLocation();
    const [characters, setCharacters] = useState([])
 
 
@@ -76,8 +82,29 @@ function App() {
    return (
 
       <div className='App'>
-         <NavBar onSearch={onSearch} random={randomHandler}/>
-         <Cards characters={characters} onClose={onClose } />
+
+         { pathname !== "/" && <NavBar onSearch={onSearch}
+                                       random={randomHandler} /> }
+         <Routes>
+
+         /*Cards*/
+         <Route path="/home" element={
+         <Cards characters={characters} onClose={onClose} />}>
+         </Route>
+
+         /*About */
+         <Route path="/About" element={ <About /> } />
+
+         /*Detail*/
+         <Route path="/detail/:id" element={ <Detail />}/>
+
+         /* Error */
+         <Route path='*' element={<Error />}/>
+
+
+         </Routes>
+      
+         
          
       </div>
    );

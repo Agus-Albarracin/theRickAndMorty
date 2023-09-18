@@ -1,13 +1,19 @@
+import { Link } from 'react-router-dom'
+
 const Card = ({id, name, status, species, gender, origin, image, onClose}) => {
    return (
       <div>
           <button onClick={()=>{onClose(id)}}>X</button>
+          <Link to={`/detail/${id}`}>
           <h2>{name};</h2>
-          <h2>{status}</h2>
+          <img src={image} alt={name} /> 
+          </Link>
+
+          {/* <h2>{status}</h2>
           <h2>{species}</h2>
           <h2>{gender}</h2>
-          <h2>{origin?.name}</h2>
-          <img src={image} alt={name} /> 
+          <h2>{origin?.name}</h2> */}
+          
       </div>
    );
 }
