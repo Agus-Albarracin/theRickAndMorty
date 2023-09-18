@@ -1,4 +1,8 @@
 :root {
+  background-image: url(https://cdnb.artstation.com/p/assets/images/images/012/016/493/large/gilson-junior-render0005.jpg?1532582340);
+  background-size:cover;
+  background-attachment: fixed;
+  text-align: center;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
