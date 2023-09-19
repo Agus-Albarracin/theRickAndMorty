@@ -6,6 +6,7 @@ const NavBar = ({onSearch, random, logOut}) =>{
         <div>
             <button onClick={random}>Random</button>
             <SearchBar onSearch={onSearch}/>
+            <Link to="/favorites"> <button>Favorites</button>  </Link>
             <Link to="/about"> <button>About</button> </Link>
             <Link to="/home"> <button>Home</button>  </Link>
             <button onClick={logOut}>Exit</button>    
