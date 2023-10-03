@@ -30,12 +30,16 @@ const Card = ({id, name, status, species, gender, origin, image, onClose, addFav
 
    return (
       <div>
-          <button onClick={()=>{onClose(id)}}>X</button>
+   {
+     location.pathname !== "/favorites" && <button onClick={()=>{onClose(id)}}>X</button>
+   }
+          {/* <button onClick={()=>{onClose(id)}}>X</button> */}
 
    { isFav ?
          (<button onClick={handleFavorite}>❤️</button>)
       :  (<button onClick={handleFavorite}>🤍</button>)
    }
+
 
           <Link to={`/detail/${id}`}>
           <h2>{name};</h2>
