@@ -1,34 +1,43 @@
-//Tarea de express
-const express = require('express');
-const server = express();
+//tarea de testing
 const PORT = 3001;
-const { router } = require('./routes/index');
-const  morgan  = require("morgan");
-const  cors  = require("cors");
-
-server.use(express.json());
-server.use(morgan('dev'))
-server.use(cors())
-
-server.use((req, res, next) => {
-   res.header('Access-Control-Allow-Origin', '*');
-   res.header('Access-Control-Allow-Credentials', 'true');
-   res.header(
-      'Access-Control-Allow-Headers',
-      'Origin, X-Requested-With, Content-Type, Accept'
-   );
-   res.header(
-      'Access-Control-Allow-Methods',
-      'GET, POST, OPTIONS, PUT, DELETE'
-   ); 
-   next();
-});
-
-server.use("/rickandmorty", router)
+const server = require("../src/app")
 
 server.listen(PORT, () => {
    console.log('Server raised in port: ' + PORT);
 });
+
+
+//Tarea de express
+// const express = require('express');
+// const server = express();
+// const PORT = 3001;
+// const { router } = require('./routes/index');
+// const  morgan  = require("morgan");
+// const  cors  = require("cors");
+
+// server.use(express.json());
+// server.use(morgan('dev'))
+// server.use(cors())
+
+// server.use((req, res, next) => {
+//    res.header('Access-Control-Allow-Origin', '*');
+//    res.header('Access-Control-Allow-Credentials', 'true');
+//    res.header(
+//       'Access-Control-Allow-Headers',
+//       'Origin, X-Requested-With, Content-Type, Accept'
+//    );
+//    res.header(
+//       'Access-Control-Allow-Methods',
+//       'GET, POST, OPTIONS, PUT, DELETE'
+//    ); 
+//    next();
+// });
+
+// server.use("/rickandmorty", router)
+
+// server.listen(PORT, () => {
+//    console.log('Server raised in port: ' + PORT);
+// });
 
 
 
