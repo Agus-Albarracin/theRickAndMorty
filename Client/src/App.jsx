@@ -44,40 +44,68 @@ function App() {
    //    }
    // }
    
-   const login = (userData) =>{
-      const { email, password } = userData;
+   const login = async (userData) =>{
+      try { const { email, password } = userData;
       const URL = 'http://localhost:3001/rickandmorty/login/';
-      axios(URL + `?email=${email}&password=${password}`)
+      await axios(URL + `?email=${email}&password=${password}`)
       .then(({ data }) => {
          const { access } = data;
          setAccess(data);
          access && navigate('/home');
       });
+   } catch (error){
+      (alert("Hubo un problema con inicio de sesion!"))
+
    }
+   }
+     
 
    const logOut = () =>{
       setAccess(false);
       navigate('/home');
    }
 
-   const onSearch = (id) => {
-      axios(`http://localhost:3001/rickandmorty/character/${id}`)
-      .then(({ data }) => {
-         if (data.name) {
 
-            let rptido =  characters.find((char) => char.id === data.id);
-            if(rptido)  {  alert('El personaje está invocado!'); }
+   const onSearch  = async (id)=> {
 
-            else setCharacters((oldChars) => [...oldChars, data]);
+      try{ const { data } = await axios(`http://localhost:3001/rickandmorty/character/${id}`)
+   
+                  if (data.name){  
+   
+                       let rptido =  characters.find((char) => char.id === data.id);
+   
+                       if(rptido)  {  alert('El personaje está invocado!'); } 
+            
+                       else {  setCharacters((allChars) => [...allChars, data]); }
+                  }
+                  console.log({data})
 
-         }  else {
-            window.alert('¡No hay personajes con este ID!');
-         }
-      });
-   }
+      } catch (error) {
+         (alert('¡No hay personajes con este ID!'))
+   
+      }
+}
+
+   // const onSearch = (id) => {
+   //    axios(`http://localhost:3001/rickandmorty/character/${id}`)
+   //    .then(({ data }) => {
+   //       if (data.name) {
+
+   //          let rptido =  characters.find((char) => char.id === data.id);
+   //          if(rptido)  {  alert('El personaje está invocado!'); }
+
+   //          else setCharacters((oldChars) => [...oldChars, data]);
+
+   //       }  else {
+   //          window.alert('¡No hay personajes con este ID!');
+   //       }
+   //    });
+   // }
    // const onSearch = ()=>{
    //    setCharacters([...characters, example])
    // } esta funcion la creamos en la hw8 con la intencion de ver la funciones del estado. y el example de la hw.
+   
+   
    const onClose = (id) => {
       setCharacters(
          characters.filter((char) =>{
